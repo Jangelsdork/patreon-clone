@@ -1,4 +1,5 @@
 /* eslint-disable import/prefer-default-export */
+
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -31,7 +32,7 @@ export function UserForm() {
     },
   })
  
-  // 2. Define a submit handler.
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values)
     try{
@@ -44,7 +45,7 @@ export function UserForm() {
 
       },
       
-      
+      // lets do some better error handling / return if successful
       )
       return response.json()
     }

@@ -11,7 +11,6 @@ const client = createClient({
 // eslint-disable-next-line import/prefer-default-export
 export async function POST(request: Request){
     const user = await request.json()
-    console.log(user.username)
     
     await client.execute(`INSERT INTO USERS (name) VALUES ("${user.username}")`);
 
