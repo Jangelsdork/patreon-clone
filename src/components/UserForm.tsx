@@ -15,12 +15,15 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+// import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+
+import { Textarea } from "./ui/textarea"
 
 
 const formSchema = z.object({
-  username: z.string().min(2).max(50),
+  description: z.string().min(2).max(1000, { message: "Please keep the report to 1000 characters or less"}),
+  userId: z.number()
 })
 
 export function UserForm() {
@@ -28,7 +31,8 @@ export function UserForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      description: "",
+      userId: 1
     },
   })
  
@@ -36,7 +40,7 @@ export function UserForm() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values)
     try{
-      const response = await fetch("/api/add-user",{
+      const response = await fetch("/api/add-incident",{
         method:"POST",
         body: JSON.stringify(values),
         headers: {
@@ -60,12 +64,12 @@ export function UserForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="username"
+          name="description"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Textarea placeholder="Please add a description of the incident..." {...field} />
               </FormControl>
               <FormDescription>
                 This is your public display name.

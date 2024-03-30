@@ -10,9 +10,10 @@ const client = createClient({
 
 // eslint-disable-next-line import/prefer-default-export
 export async function POST(request: Request){
-    const user = await request.json()
+    const incident = await request.json()
+    console.log(incident)
     
-    await client.execute(`INSERT INTO USERS (name) VALUES ("${user.username}")`);
+    await client.execute(`INSERT INTO INCIDENTS (description, userId) VALUES ("${incident.description}", "${incident.userId}")`);
 
     return NextResponse.json("success");
 
