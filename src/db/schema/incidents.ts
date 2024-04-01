@@ -5,7 +5,7 @@ import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 import { individual } from "./individual";
 import { organisation } from "./organisation";
-import { users } from "./users";
+import { appUsers } from "./appUsers";
 
 export const incidents = sqliteTable('incidents', {
   id: integer('id').primaryKey(),
@@ -14,6 +14,7 @@ export const incidents = sqliteTable('incidents', {
   dateResolved: text('dateResolved'),
   individualsId: integer('individualsId').references(() => individual.id),
   organisationId: integer('organisationId').references(() => organisation.id),
-  userId: integer('userId').notNull().references(() => users.id),
+  // needs to be "notnull"
+  userId: integer('userId').references(() => appUsers.id),
   createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`).notNull(),
 });
