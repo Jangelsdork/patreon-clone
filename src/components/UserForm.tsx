@@ -5,6 +5,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { useState } from "react"
 
 import {
   Form,
@@ -17,7 +18,10 @@ import {
 // import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
+import { IoBusiness,  IoPersonCircleSharp} from "react-icons/io5";
+
 import { Textarea } from "./ui/textarea"
+
 
 
 const formSchema = z.object({
@@ -25,8 +29,12 @@ const formSchema = z.object({
   userId: z.number()
 })
 
+
 export function UserForm() {
-  // 1. Define your form.
+
+  const [individualClicked, setIndividualClicked] = useState<boolean>(false)
+  const [organisationClicked, setOrganisationClicked] = useState<boolean>(false)
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -37,6 +45,7 @@ export function UserForm() {
  
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    
     console.log(values)
     try{
       const response = await fetch("/api/add-incident",{
@@ -68,14 +77,30 @@ export function UserForm() {
             <FormItem>
               <FormLabel>Incident report</FormLabel>
               <FormControl>
-                <Textarea placeholder="Please add a description of the incident..." {...field} />
+                <Textarea
+                  placeholder="Please add a description of the incident..."
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
+        <div>Please link the incident to an individual, an organisation, or both: </div>
+        <div className="grid grid-cols-2 items-center border-2 border-slate p-6" onClick={() => setIndividualClicked(!individualClicked)}>
+          <IoPersonCircleSharp size={100} />
+          <div>Link to an Individual</div>
+          <div>{individualClicked?<div>clicked</div>:<div>not clicked</div>}</div>
+        </div>
+        
+        <div className="grid grid-cols-2 items-center border-2 border-slate p-6" onClick={() => setOrganisationClicked(!organisationClicked)}>
+          <IoBusiness size={100} />
+          <div>Link to an organisation</div>
+          <div>{organisationClicked?<div>clicked</div>:<div>not clicked</div>}</div>
+
+        </div>
         <Button type="submit">Submit</Button>
       </form>
     </Form>
-  )
+  );
 }

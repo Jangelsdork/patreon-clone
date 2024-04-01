@@ -32,16 +32,6 @@ const formSchema = z.object({
   role: z.enum(["user", "admin"]),
 });
 
-// const roles = [
-//   {
-//     value: "user",
-//     label: "User",
-//   },
-//   {
-//     value: "admin",
-//     label: "Admin",
-//   },
-// ];
 
 export default function AddUser() {
   const form = useForm<z.infer<typeof formSchema>>({

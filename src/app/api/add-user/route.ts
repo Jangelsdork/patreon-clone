@@ -11,7 +11,6 @@ const client = createClient({
 // eslint-disable-next-line import/prefer-default-export
 export async function POST(request: Request){
     const { firstName, lastName, email, role } = await request.json()
-    console.log(firstName, lastName, email, role)
     
     await client.execute(`INSERT INTO APPUSERS (firstName, lastName, email, role) VALUES ("${firstName}", "${lastName}", "${email}", "${role}")`);
 
