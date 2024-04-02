@@ -28,7 +28,7 @@ const formSchema = z.object({
   description: z.string().min(2).max(1000, { message: "Please keep the report to 1000 characters or less"}),
   userId: z.number()
 })
-
+export type IncidentForm = z.infer<typeof formSchema>
 
 export function UserForm() {
 
@@ -42,6 +42,7 @@ export function UserForm() {
       userId: 1
     },
   })
+
  
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
