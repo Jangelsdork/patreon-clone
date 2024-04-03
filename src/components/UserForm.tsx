@@ -19,6 +19,8 @@ import {
 import { Button } from "@/components/ui/button"
 
 import { IoBusiness,  IoPersonCircleSharp} from "react-icons/io5";
+import IndividualForm from "./IndividualForm"
+
 
 import { Textarea } from "./ui/textarea"
 
@@ -69,6 +71,9 @@ export function UserForm() {
   }
 
   return (
+
+    <div>        <h1>Submit a new incident report</h1>
+
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
@@ -90,9 +95,9 @@ export function UserForm() {
         <div>Please link the incident to an individual, an organisation, or both: </div>
         <div className="grid grid-cols-2 items-center border-2 border-slate p-6" onClick={() => setIndividualClicked(!individualClicked)}>
           <IoPersonCircleSharp size={100} />
-          <div>Link to an Individual</div>
-          <div>{individualClicked?<div>clicked</div>:<div>not clicked</div>}</div>
+          {individualClicked?<IndividualForm />:<div>Link to an individual</div>}
         </div>
+        
         
         <div className="grid grid-cols-2 items-center border-2 border-slate p-6" onClick={() => setOrganisationClicked(!organisationClicked)}>
           <IoBusiness size={100} />
@@ -103,5 +108,6 @@ export function UserForm() {
         <Button type="submit">Submit</Button>
       </form>
     </Form>
+    </div>
   );
 }

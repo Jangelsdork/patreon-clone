@@ -69,7 +69,7 @@ export default function AddUser() {
 
   return (
     <div className="flex flex-col p-8">
-      <Form {...form}>
+    <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
             control={form.control}
