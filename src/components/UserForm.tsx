@@ -72,7 +72,7 @@ export function UserForm() {
 
   return (
 
-    <div>        <h1>Submit a new incident report</h1>
+    <div >        <h1>Submit a new incident report</h1>
 
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
