@@ -93,15 +93,15 @@ export function UserForm() {
           )}
         />
         <div>Please link the incident to an individual, an organisation, or both: </div>
-        <div className="grid grid-cols-2 items-center border-2 border-slate p-6" onClick={() => setIndividualClicked(!individualClicked)}>
+        <div className="grid grid-cols-[30fr_70fr] items-center content-center text-center gap-4 border-2 border-slate p-6">
           <IoPersonCircleSharp size={100} />
-          {individualClicked?<IndividualForm />:<div>Link to an individual</div>}
+          {individualClicked?<IndividualForm setIndividualClicked={setIndividualClicked} />:<Button variant="outline" onClick={() => setIndividualClicked(!individualClicked)}>Link to an individual</Button>}
         </div>
         
         
-        <div className="grid grid-cols-2 items-center border-2 border-slate p-6" onClick={() => setOrganisationClicked(!organisationClicked)}>
+        <div className="grid grid-cols-[30fr_70fr] items-center content-center text-center gap-4 border-2 border-slate p-6" >
           <IoBusiness size={100} />
-          <div>Link to an organisation</div>
+          <Button variant="outline" onClick={() => setOrganisationClicked(!organisationClicked)}>Link to an organisation</Button>
           <div>{organisationClicked?<div>clicked</div>:<div>not clicked</div>}</div>
 
         </div>

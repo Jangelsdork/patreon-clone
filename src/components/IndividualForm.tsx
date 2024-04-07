@@ -3,6 +3,8 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { useState } from "react"
+import React from "react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -25,9 +27,11 @@ const formSchema = z.object({
   createdBy: z.number()
 
 })
-type Props = {}
+type Props = {
+    setIndividualClicked:React.Dispatch<React.SetStateAction<boolean>>
+}
 
-export const IndividualForm = (props: Props) => {
+export const IndividualForm = ({setIndividualClicked}: Props) => {
     
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -46,22 +50,75 @@ export const IndividualForm = (props: Props) => {
       }
 
   return (
+    <div className=" flex flex-col ">
     <FormField
           control={form.control}
           name="firstName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>firstName</FormLabel>
+              <FormLabel>Last Name</FormLabel>
               <FormControl>
                 <Input placeholder="John" {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
+    <FormField
+          control={form.control}
+          name="lastName"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Last Name </FormLabel>
+              <FormControl>
+                <Input placeholder="Smith" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+    <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input placeholder="j_smith@gmail.com" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+    <FormField
+          control={form.control}
+          name="phone"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>phone</FormLabel>
+              <FormControl>
+                <Input placeholder="+49 123 456..." {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+    <FormField
+          control={form.control}
+          name="country"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>country</FormLabel>
+              <FormControl>
+                <Input placeholder="Germany" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button onClick={() => setIndividualClicked(false)}>Close</Button>
+    </div>
+
   )
 }
 
