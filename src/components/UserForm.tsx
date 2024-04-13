@@ -30,7 +30,19 @@ const formSchema = z.object({
   description: z.string().min(2).max(1000, { message: "Please keep the report to 1000 characters or less"}),
   userId: z.number()
 })
+
+const individualSchema = z.object({
+  firstName: z.string().min(2).max(50),
+  lastName: z.string().min(2).max(50),
+  email: z.string().email({ message: "Invalid email address" }).max(50),
+  phone: z.string().min(2).max(16),
+  country: z.string().min(2).max(50),
+  createdBy: z.number()
+
+})
 export type IncidentForm = z.infer<typeof formSchema>
+
+
 
 export function UserForm() {
 
@@ -41,8 +53,8 @@ export function UserForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       description: "",
-      userId: 1
-    },
+      userId: 1, 
+    }
   })
 
  

@@ -68,7 +68,8 @@ export default function AddUser() {
   }
 
   return (
-    <div className="flex flex-col p-8">
+    <div className="flex flex-col p-8 mt-[15vh]">
+      <div>Add a new user</div>
     <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
@@ -115,7 +116,7 @@ export default function AddUser() {
             name="role"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>User Role</FormLabel>
                 <FormControl>
                   <Select
                   onValueChange={field.onChange}
