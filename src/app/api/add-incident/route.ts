@@ -11,7 +11,7 @@ const client = createClient({
 // eslint-disable-next-line import/prefer-default-export
 export async function POST(request: Request){
     const incident = await request.json()
-    
+    console.log(incident)
     // defaults to adding user 1 (Jack) as the user id. Change to "current user" 
 
     await client.execute(`INSERT INTO INCIDENTS (description, userId ) VALUES ("${incident.description}", 1)`);

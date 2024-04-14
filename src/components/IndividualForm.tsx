@@ -1,10 +1,12 @@
+/* eslint-disable arrow-body-style */
 "use client"
  
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
+import { UseFormReturn } from "react-hook-form"
 import { z } from "zod"
 import { useState } from "react"
 import React from "react"
+
 
 import { Button } from "@/components/ui/button"
 import {
@@ -29,25 +31,41 @@ const formSchema = z.object({
 })
 type Props = {
     setIndividualClicked:React.Dispatch<React.SetStateAction<boolean>>
+    form: UseFormReturn<{
+      description: string;
+      userId: number;
+      firstName: string;
+      lastName: string;
+      email: string;
+      phone: string;
+      country: string;
+      createdBy: number | "";
+      orgName: string;
+      orgEmail: string;
+      orgPhone: string;
+      orgCountry: string;
+      orgCity: string;
+      orgCreatedBy: number | "";
+  }, any, undefined>
 }
 
-export const IndividualForm = ({setIndividualClicked}: Props) => {
+export const IndividualForm = ({setIndividualClicked, form}: Props) => {
     
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-          firstName: "",
-          lastName: "",
-          email: "", 
-          phone: "", 
-          country: "", 
-          createdBy: 1
-        },
-      })
+    // const form = useForm<z.infer<typeof formSchema>>({
+    //     resolver: zodResolver(formSchema),
+    //     defaultValues: {
+    //       firstName: "",
+    //       lastName: "",
+    //       email: "", 
+    //       phone: "", 
+    //       country: "", 
+    //       createdBy: 1
+    //     },
+    //   })
 
-      function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values)
-      }
+    //   function onSubmit(values: z.infer<typeof formSchema>) {
+    //     console.log(values)
+    //   }
 
   return (
     <div className=" flex flex-col ">
