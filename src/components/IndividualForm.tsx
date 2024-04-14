@@ -1,18 +1,17 @@
 /* eslint-disable arrow-body-style */
+
 "use client"
  
-import { zodResolver } from "@hookform/resolvers/zod"
 import { UseFormReturn } from "react-hook-form"
-import { z } from "zod"
-import { useState } from "react"
+
 import React from "react"
 
 
 import { Button } from "@/components/ui/button"
 import {
-  Form,
+  // Form,
   FormControl,
-  FormDescription,
+  // FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -20,15 +19,15 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
  
-const formSchema = z.object({
-  firstName: z.string().min(2).max(50),
-  lastName: z.string().min(2).max(50),
-  email: z.string().email({ message: "Invalid email address" }).max(50),
-  phone: z.string().min(2).max(16),
-  country: z.string().min(2).max(50),
-  createdBy: z.number()
+// const formSchema = z.object({
+//   firstName: z.string().min(2).max(50),
+//   lastName: z.string().min(2).max(50),
+//   email: z.string().email({ message: "Invalid email address" }).max(50),
+//   phone: z.string().min(2).max(16),
+//   country: z.string().min(2).max(50),
+//   createdBy: z.number()
 
-})
+// })
 type Props = {
     setIndividualClicked:React.Dispatch<React.SetStateAction<boolean>>
     form: UseFormReturn<{

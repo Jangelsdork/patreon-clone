@@ -45,7 +45,7 @@ const formSchema = z.object({
 // throws error if either ind or org is not filled out. 
   .superRefine((values, ctx) => {
     // if((!values.firstName && !values.lastName && !values.email && !values.phone && !values.country) && (!values.orgName && !values.orgEmail && !values.orgPhone && !values.orgCountry && !values.orgCity)){
-    if(!values.firstName){
+    if((!values.firstName || !values.lastName) && !values.orgName){
       ctx.addIssue({
         message: 'Please add either an individual or an organisation to the incident report',
         code: z.ZodIssueCode.custom,
