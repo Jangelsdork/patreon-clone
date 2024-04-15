@@ -4,7 +4,6 @@
 
 import { MdKeyboardArrowUp } from "react-icons/md";
 
- 
 import { UseFormReturn } from "react-hook-form"
 
 import React from "react"
@@ -32,7 +31,7 @@ import { Input } from "@/components/ui/input"
 
 // })
 type Props = {
-    setIndividualClicked:React.Dispatch<React.SetStateAction<boolean>>
+    setOrganisationClicked:React.Dispatch<React.SetStateAction<boolean>>
     form: UseFormReturn<{
       description: string;
       userId: number;
@@ -51,34 +50,19 @@ type Props = {
   }, any, undefined>
 }
 
-export const IndividualForm = ({setIndividualClicked, form}: Props) => {
+export const OrgForm = ({setOrganisationClicked, form}: Props) => {
     
-    // const form = useForm<z.infer<typeof formSchema>>({
-    //     resolver: zodResolver(formSchema),
-    //     defaultValues: {
-    //       firstName: "",
-    //       lastName: "",
-    //       email: "", 
-    //       phone: "", 
-    //       country: "", 
-    //       createdBy: 1
-    //     },
-    //   })
-
-    //   function onSubmit(values: z.infer<typeof formSchema>) {
-    //     console.log(values)
-    //   }
 
   return (
     <div className=" flex flex-col ">
     <FormField
           control={form.control}
-          name="firstName"
+          name="orgName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Last Name</FormLabel>
+              <FormLabel>Organisation Name</FormLabel>
               <FormControl>
-                <Input placeholder="John" {...field} />
+                <Input placeholder="Big Sounds PTY LTD" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -86,12 +70,12 @@ export const IndividualForm = ({setIndividualClicked, form}: Props) => {
         />
     <FormField
           control={form.control}
-          name="lastName"
+          name="orgEmail"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Last Name </FormLabel>
+              <FormLabel>Organisation Email</FormLabel>
               <FormControl>
-                <Input placeholder="Smith" {...field} />
+                <Input placeholder="big@sounds.com" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -99,12 +83,12 @@ export const IndividualForm = ({setIndividualClicked, form}: Props) => {
         />
     <FormField
           control={form.control}
-          name="email"
+          name="orgPhone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Phone Number</FormLabel>
               <FormControl>
-                <Input placeholder="j_smith@gmail.com" {...field} />
+                <Input placeholder="+61 234 567..." {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -112,12 +96,12 @@ export const IndividualForm = ({setIndividualClicked, form}: Props) => {
         />
     <FormField
           control={form.control}
-          name="phone"
+          name="orgCountry"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>phone</FormLabel>
+              <FormLabel>Country</FormLabel>
               <FormControl>
-                <Input placeholder="+49 123 456..." {...field} />
+                <Input placeholder="Australia" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -125,23 +109,22 @@ export const IndividualForm = ({setIndividualClicked, form}: Props) => {
         />
     <FormField
           control={form.control}
-          name="country"
+          name="orgCity"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>country</FormLabel>
+              <FormLabel>City</FormLabel>
               <FormControl>
-                <Input placeholder="Germany" {...field} />
+                <Input placeholder="Melbourne" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button className="mt-4" variant="link" onClick={() => setIndividualClicked(false)}><MdKeyboardArrowUp />
-</Button>
+        <Button className="mt-4" variant="link" onClick={() => setOrganisationClicked(false)}><MdKeyboardArrowUp /></Button>
     </div>
 
   )
 }
 
 
-export default IndividualForm
+export default OrgForm

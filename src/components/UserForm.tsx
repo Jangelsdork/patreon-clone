@@ -23,6 +23,7 @@ import IndividualForm from "./IndividualForm"
 
 
 import { Textarea } from "./ui/textarea"
+import OrgForm from "./OrgForm"
 
 
 
@@ -151,8 +152,7 @@ export function UserForm() {
         
         <div className="grid grid-cols-[30fr_70fr] items-center content-center text-center gap-4 border-2 border-slate p-6" >
           <IoBusiness size={100} />
-          <Button variant="outline" onClick={() => setOrganisationClicked(!organisationClicked)}>Link to an organisation</Button>
-          <div>{organisationClicked?<div>clicked</div>:<div>not clicked</div>}</div>
+          <div>{organisationClicked?<OrgForm setOrganisationClicked={setOrganisationClicked} form={form}/>:<Button  variant="outline" onClick={() => setOrganisationClicked(!organisationClicked)}>Link to an organisation</Button>}</div>
 
         </div>
         <Button type="submit">Submit</Button>
