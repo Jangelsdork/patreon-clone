@@ -19,10 +19,10 @@ import {
 import { Button } from "@/components/ui/button";
 
 import { IoBusiness, IoPersonCircleSharp } from "react-icons/io5";
-import IndividualForm from "./IndividualForm";
+import { IndividualForm }from "./IndividualForm";
 
 import { Textarea } from "./ui/textarea";
-import OrgForm from "./OrgForm";
+import { OrgForm }  from "./OrgForm";
 
 const formSchema = z
   .object({
@@ -57,7 +57,7 @@ const formSchema = z
   // throws error if either ind or org is not filled out.
   .superRefine((values, ctx) => {
     // if((!values.firstName && !values.lastName && !values.email && !values.phone && !values.country) && (!values.orgName && !values.orgEmail && !values.orgPhone && !values.orgCountry && !values.orgCity)){
-    if ((!values.firstName || !values.lastName || !values.email || !values.phone || !values.country) && (!values.orgName || values.orgCreatedBy) {
+    if ((!values.firstName || !values.lastName || !values.email || !values.phone || !values.country) && (!values.orgName || !values.orgEmail || !values.orgPhone || !values.orgCity || !values.orgCountry )) {
       ctx.addIssue({
         message:
           "Please add either an individual or an organisation to the incident report",
@@ -82,6 +82,8 @@ export function UserForm() {
   const [individualClicked, setIndividualClicked] = useState<boolean>(false);
   const [organisationClicked, setOrganisationClicked] =
     useState<boolean>(false);
+    
+  
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
