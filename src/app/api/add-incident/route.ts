@@ -16,7 +16,7 @@ export async function POST(request: Request){
     await client.execute(`INSERT INTO INCIDENTS (description, userId ) VALUES ("${incident.description}", 1)`);
     // if all individual attributes exist, inset into individual 
     if(incident.firstName && incident.lastName && incident.email && incident.country && incident.phone){
-      await client.execute(`INSERT INTO INDIVIDUAL (firstName, lastName, email, phone, country, createdBy ) Individual.ID VALUES ("${incident.firstName}", "${incident.lastName}", "${incident.email}", "${incident.phone}", "${incident.country}", 1)`);
+      await client.execute(`INSERT INTO INDIVIDUAL (firstName, lastName, email, phone, country, createdBy ) VALUES ("${incident.firstName}", "${incident.lastName}", "${incident.email}", "${incident.phone}", "${incident.country}", 1)`);
     }
     // if all org attributes exist, inset into individual 
     if(incident.orgName){
