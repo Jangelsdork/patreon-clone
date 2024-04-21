@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 import { db } from "@/db";
 import { incidents } from "@/db/schema/incidents";
 import { individual } from "@/db/schema/individual";
+import { IncidentForm } from "@/components/UserForm";
 
 
 
@@ -15,13 +16,13 @@ const client = createClient({
 });
 
 export async function POST(request: Request){
-    const incident = await request.json()
+    const incident:IncidentForm = await request.json()
     console.log(incident)
     // defaults to adding user 1 (Jack) as the user id. Change to "current user" 
 
-    await client.execute(`INSERT INTO INCIDENTS (description, userId ) VALUES ("${incident.description}", 1)`);
+    // await client.execute(`INSERT INTO INCIDENTS (description, userId ) VALUES ("${incident.description}", 1)`);
 
-    // await db.insert(incidents).values([{description: incident.description}, {userId: 1}]).returning({ insertedId: incidents.id })
+    await db.insert(incidents).values([{description: incident.description, userId: 1}]).returning({ insertedId: incidents.id })
     
     await client.execute(`INSERT INTO INDIVIDUAL (firstName, lastName, email, phone, country, createdBy ) VALUES ("${incident.firstName}", "${incident.lastName}", "${incident.email}", "${incident.phone}", "${incident.country}", 1)`);
     
