@@ -68,58 +68,6 @@ export const OrgForm = ({setOrganisationClicked, form}: Props) => {
             </FormItem>
           )}
         />
-    <FormField
-          control={form.control}
-          name="orgEmail"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Organisation Email</FormLabel>
-              <FormControl>
-                <Input placeholder="big@sounds.com" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-    <FormField
-          control={form.control}
-          name="orgPhone"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Phone Number</FormLabel>
-              <FormControl>
-                <Input placeholder="+61 234 567..." {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-    <FormField
-          control={form.control}
-          name="orgCountry"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Country</FormLabel>
-              <FormControl>
-                <Input placeholder="Australia" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-    <FormField
-          control={form.control}
-          name="orgCity"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>City</FormLabel>
-              <FormControl>
-                <Input placeholder="Melbourne" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
         <Button className="mt-4" variant="link" onClick={() => setOrganisationClicked(false)}><MdKeyboardArrowUp /></Button>
     </div>
 

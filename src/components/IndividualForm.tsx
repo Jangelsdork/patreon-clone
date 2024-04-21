@@ -2,7 +2,6 @@
 
 "use client"
 
-import { MdKeyboardArrowUp } from "react-icons/md";
 
  
 import { UseFormReturn } from "react-hook-form"
@@ -10,7 +9,6 @@ import { UseFormReturn } from "react-hook-form"
 import React from "react"
 
 
-import { Button } from "@/components/ui/button"
 import {
   // Form,
   FormControl,
@@ -32,7 +30,6 @@ import { Input } from "@/components/ui/input"
 
 // })
 type Props = {
-    setIndividualClicked:React.Dispatch<React.SetStateAction<boolean>>
     form: UseFormReturn<{
       description: string;
       userId: number;
@@ -43,15 +40,11 @@ type Props = {
       country: string;
       createdBy: number | "";
       orgName: string;
-      orgEmail: string;
-      orgPhone: string;
-      orgCountry: string;
-      orgCity: string;
       orgCreatedBy: number | "";
   }, any, undefined>
 }
 
-export const IndividualForm = ({setIndividualClicked, form}: Props) => {
+export const IndividualForm = ({ form }: Props) => {
     
     // const form = useForm<z.infer<typeof formSchema>>({
     //     resolver: zodResolver(formSchema),
@@ -136,8 +129,20 @@ export const IndividualForm = ({setIndividualClicked, form}: Props) => {
             </FormItem>
           )}
         />
-        <Button className="mt-4" variant="link" onClick={() => setIndividualClicked(false)}><MdKeyboardArrowUp />
-</Button>
+    <FormField
+          control={form.control}
+          name="orgName"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Organisation (optional)</FormLabel>
+              <FormControl>
+                <Input placeholder="Music Company Pty Ltd" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        
     </div>
 
   )
