@@ -20,11 +20,14 @@ export async function POST(request: Request){
     console.log(incident)
     // defaults to adding user 1 (Jack) as the user id. Change to "current user" 
 
+    // await client.execute(`INSERT INTO INDIVIDUAL (firstName, lastName, email, phone, country, createdBy ) VALUES ("${incident.firstName}", "${incident.lastName}", "${incident.email}", "${incident.phone}", "${incident.country}", 1)`);
+
+    const insertIndividual = await db.insert(individual).values([{firstName: incident.firstName, lastName: incident.lastName, email:incident.email, phone: incident.phone, country: incident.country}]).returning({ insertedId: individual.id })
+
     // await client.execute(`INSERT INTO INCIDENTS (description, userId ) VALUES ("${incident.description}", 1)`);
 
-    await db.insert(incidents).values([{description: incident.description, userId: 1}]).returning({ insertedId: incidents.id })
+    await db.insert(incidents).values([{description: incident.description, userId: 1, individualsId: insertIndividual[0].insertedId }])
     
-    await client.execute(`INSERT INTO INDIVIDUAL (firstName, lastName, email, phone, country, createdBy ) VALUES ("${incident.firstName}", "${incident.lastName}", "${incident.email}", "${incident.phone}", "${incident.country}", 1)`);
     
     // await db.insert(individual).values([{firstName: incident.firstName}, {lastName:incident.lastName}, {email: incident.email}, {phone: incident.phone}, {country: incident.country}, {createdBy: incident.createdBy}])
     // if all org attributes exist, inset into individual 
