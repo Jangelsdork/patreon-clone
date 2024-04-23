@@ -9,7 +9,7 @@ import { appUsers } from "./appUsers";
 export const organisation = sqliteTable('organisation', {
   id: integer('id').primaryKey(),
   orgName: text('orgName').notNull(),
-  individuals: text('individuals').notNull().references(() => individual.id),
+  individuals: integer('individuals').notNull().references(() => individual.id),
   // make not null once entries in user table
   createdBy: integer('createdBy').references(() => appUsers.id),
   createdAt: text('createdAt').default(sql`CURRENT_TIMESTAMP`).notNull(),
