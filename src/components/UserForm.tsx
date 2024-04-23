@@ -32,27 +32,16 @@ const formSchema = z
     email: z
       .string()
       .email({ message: "Invalid email address" })
-      .max(50)
-      .or(z.literal("")),
+      .max(50),
     phone: z.string().min(2).max(16),
     country: z.string().min(2).max(50),
     createdBy: z.number().or(z.literal("")),
-    orgName: z.string().min(2).max(50),
+    orgName: z.string().min(2).max(50).or(z.literal("")),
     orgCreatedBy: z.number().or(z.literal("")),
   })
   // throws error if either ind or org is not filled out.
 
   
-
-// const individualSchema = z.object({
-//   firstName: z.string().min(2).max(50),
-//   lastName: z.string().min(2).max(50),
-//   email: z.string().email({ message: "Invalid email address" }).max(50),
-//   phone: z.string().min(2).max(16),
-//   country: z.string().min(2).max(50),
-//   createdBy: z.number()
-
-// })
 export type IncidentForm = z.infer<typeof formSchema>;
 
 export function UserForm() {
