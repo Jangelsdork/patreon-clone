@@ -63,7 +63,7 @@ export const IndividualForm = ({ form }: Props) => {
     //   }
 
   return (
-    <div className=" flex flex-col ">
+    <div className=" flex flex-col gap-4">
     <FormField
           control={form.control}
           name="firstName"
