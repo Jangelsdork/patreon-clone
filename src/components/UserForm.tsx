@@ -109,14 +109,11 @@ export function UserForm() {
               </FormItem>
             )}
           />
-          <div>
-            Please link the incident to an individual, an organisation, or both:{" "}
-          </div>
-          <div className="gap-4 ">
+  
             <IndividualForm
               form={form}
             />
-          </div>
+        
 
           <Button type="submit">Submit</Button>
         </form>
