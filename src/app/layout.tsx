@@ -5,8 +5,8 @@ import Nav from "@/components/nav";
 import React from "react";
 import {
   ClerkProvider,
-  SignInButton,
   SignedIn,
+  SignInButton,
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
@@ -33,11 +33,11 @@ export default function RootLayout({
             </SignedOut>
             <SignedIn>
               <UserButton />
+              <main>
+                <Nav /> {children}
+              </main>
             </SignedIn>
           </header>
-          <main>
-          <Nav /> {children}
-          </main>
         </body>
       </html>
     </ClerkProvider>
