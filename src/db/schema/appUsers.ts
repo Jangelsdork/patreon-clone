@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export */
-import { sql } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { incidents } from "./incidents";
 
 export const appUsers = sqliteTable('appUsers', {
   id: integer('id').primaryKey(),
@@ -10,4 +11,8 @@ export const appUsers = sqliteTable('appUsers', {
   role: text("role", { enum: ["user", "admin"]}),
   createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`).notNull(),
 });
+
+export const appUsersRelations = relations(appUsers, ({ many }) => ({
+  incidents: many(incidents)
+}))
 
